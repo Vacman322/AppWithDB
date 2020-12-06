@@ -1,0 +1,27 @@
+﻿<Window x:Class="AppWithDB.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AppWithDB"
+        mc:Ignorable="d"
+        Title="Login" Height="250" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Margin="10" VerticalAlignment="Center" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label FontSize="20">Login: </Label>
+        <TextBox Grid.Column="1" FontSize="15" Margin="0,10,0,10" x:Name="loginTextBox"/>
+        <Label Grid.Row="1" FontSize="20">Password: </Label>
+        <PasswordBox Grid.Row="1" Grid.Column="1" FontSize="15" Margin="0,10,0,10" x:Name="passTextBox"/>
+        <Button Grid.Row="2" FontSize="15" Content="Sign Up" Margin="10,10,10,10" x:Name="signButton" Click="signButton_Click"/>
+        <Button Grid.Row="2" FontSize="15" Grid.Column="1" Content="Log In" Margin="10,10,10,10" x:Name="loginButton" Click="loginButton_Click"/>
+    </Grid>
+</Window>
