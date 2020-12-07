@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace AppWithDB
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for Signup.xaml
     /// </summary>
     public partial class Signup : Window
     {
@@ -41,7 +41,7 @@ namespace AppWithDB
 
             try
             {
-                using (var cnn = ConnectionToDb.GetSqlConnection())
+                using (var cnn = DbInfo.GetSqlConnection())
                 {
                     cnn.Open();
                     SqlCommand command;

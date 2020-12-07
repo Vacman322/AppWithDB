@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AppWithDB
 {
-    static class ConnectionToDb
+    static class DbInfo
     {
         public static string ConnectionString { get; } = "Data Source=desktop-v43mklr;Initial Catalog=Drapery;Integrated Security=True";
 

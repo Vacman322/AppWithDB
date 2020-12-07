@@ -38,6 +38,7 @@ namespace AppWithDB
         {
             string login = loginTextBox.Text.Trim();
             string password = passTextBox.Password;
+            string role = "";
 
             //string connetionStr;
             //SqlConnection cnn;
@@ -46,21 +47,24 @@ namespace AppWithDB
             //cnn = new SqlConnection(connetionStr);
             try
             {
-                using (var cnn = ConnectionToDb.GetSqlConnection())
+                using (var cnn = DbInfo.GetSqlConnection())
                 {
                     cnn.Open();
                     SqlCommand cmd;
                     SqlDataReader dataReader;
                     string sql;
-                    sql = string.Format(@"select [login], [password]
-                                  from[User]
+                    sql = string.Format(@"select [login], [password], [role]
+                                  from [User]
                                   where[login] = '{0}' and[password] = '{1}'",
                                           login, password);
                     cmd = new SqlCommand(sql, cnn);
                     dataReader = cmd.ExecuteReader();
 
-                    if (dataReader.HasRows)
+                    if (dataReader.Read())
+                    {
                         MessageBox.Show("Авторизация прошла успешно");
+                        role = dataReader.GetString(2).ToLower();
+                    }
                     else
                         MessageBox.Show("Авторизация прошла не успешно");
 
@@ -72,6 +76,41 @@ namespace AppWithDB
             catch (Exception ex)
             {
                 MessageBox.Show("Ошибка: " + ex);
+            }
+
+            switch (role)
+            {
+                case "user":
+                    {
+                        var uw = new UserWindow();
+                        uw.Show();
+                        this.Close();
+                        break;
+                    }
+                case "ware":
+                    {
+                        var ww = new WareWindow();
+                        ww.Show();
+                        this.Close();
+                        break;
+                    }
+                case "manager":
+                    {
+                        var mv = new ManagerWindow();
+                        mv.Show();
+                        this.Close();
+                        break;
+                    }
+                case "admin":
+                    {
+                        var aw = new AdminWindow();
+                        aw.Show();
+                        this.Close();
+                        break;
+                    }
+                default:
+                    MessageBox.Show("Ошибка: не существует действия для указаной в бд роли");
+                    break;
             }
         }
     }
