@@ -5,23 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppWithDB"
         mc:Ignorable="d"
-        Title="Login" Height="250" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-    <Grid Margin="10" VerticalAlignment="Center" >
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-
-        <Label FontSize="20">Login: </Label>
-        <TextBox Grid.Column="1" FontSize="15" Margin="0,10,0,10" x:Name="loginTextBox"/>
-        <Label Grid.Row="1" FontSize="20">Password: </Label>
-        <PasswordBox Grid.Row="1" Grid.Column="1" FontSize="15" Margin="0,10,0,10" x:Name="passTextBox"/>
-        <Button Grid.Row="2" FontSize="15" Content="Sign Up" Margin="10,10,10,10" x:Name="signButton" Click="signButton_Click"/>
-        <Button Grid.Row="2" FontSize="15" Grid.Column="1" Content="Log In" Margin="10,10,10,10" x:Name="loginButton" Click="loginButton_Click"/>
+        Title="MainWindow" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" MinHeight="300" MinWidth="300">
+    <Grid>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden">
+            
+        </Frame>
     </Grid>
 </Window>

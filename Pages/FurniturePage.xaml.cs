@@ -10,18 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.Entity;
 
-namespace AppWithDB
+namespace AppWithDB.Pages
 {
     /// <summary>
-    /// Interaction logic for UserWindow.xaml
+    /// Interaction logic for FurniturePage.xaml
     /// </summary>
-    public partial class UserWindow : Window
+    public partial class FurniturePage : Page
     {
-        public UserWindow()
+        public FurniturePage()
         {
             InitializeComponent();
+            var db = new DraperyEntities();
+            db.Furnitures.Load();
+            DbGrid.ItemsSource = db.Furnitures.Local.ToBindingList();
+            db.Dispose();
         }
     }
 }

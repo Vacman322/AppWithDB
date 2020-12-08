@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AppWithDB.Pages;
 
 namespace AppWithDB
 {
@@ -24,92 +25,33 @@ namespace AppWithDB
         public MainWindow()
         {
             InitializeComponent();
+            OpenPage(PageName.login);
         }
 
-        private void signButton_Click(object sender, RoutedEventArgs e)
+        public void OpenPage(PageName pageName, string login = "")
         {
-            string login = loginTextBox.Text.Trim();
-            var signin = new Signup(login);
-            signin.Show();
-            this.Close();
-        }
-
-        private void loginButton_Click(object sender, RoutedEventArgs e)
-        {
-            string login = loginTextBox.Text.Trim();
-            string password = passTextBox.Password;
-            string role = "";
-
-            //string connetionStr;
-            //SqlConnection cnn;
-
-            //connetionStr = @"Data Source=desktop-v43mklr;Initial Catalog=Drapery;Integrated Security=True";
-            //cnn = new SqlConnection(connetionStr);
-            try
+            switch (pageName)
             {
-                using (var cnn = DbInfo.GetSqlConnection())
-                {
-                    cnn.Open();
-                    SqlCommand cmd;
-                    SqlDataReader dataReader;
-                    string sql;
-                    sql = string.Format(@"select [login], [password], [role]
-                                  from [User]
-                                  where[login] = '{0}' and[password] = '{1}'",
-                                          login, password);
-                    cmd = new SqlCommand(sql, cnn);
-                    dataReader = cmd.ExecuteReader();
-
-                    if (dataReader.Read())
-                    {
-                        MessageBox.Show("Авторизация прошла успешно");
-                        role = dataReader.GetString(2).ToLower();
-                    }
-                    else
-                        MessageBox.Show("Авторизация прошла не успешно");
-
-                    cmd.Dispose();
-                    //cnn.Close();
-                    dataReader.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка: " + ex);
-            }
-
-            switch (role)
-            {
-                case "user":
-                    {
-                        var uw = new UserWindow();
-                        uw.Show();
-                        this.Close();
-                        break;
-                    }
-                case "ware":
-                    {
-                        var ww = new WareWindow();
-                        ww.Show();
-                        this.Close();
-                        break;
-                    }
-                case "manager":
-                    {
-                        var mv = new ManagerWindow();
-                        mv.Show();
-                        this.Close();
-                        break;
-                    }
-                case "admin":
-                    {
-                        var aw = new AdminWindow();
-                        aw.Show();
-                        this.Close();
-                        break;
-                    }
+                case PageName.login:
+                    MainFrame.Navigate(new LoginPage(this));
+                    break;
+                case PageName.signUp:
+                    MainFrame.Navigate(new SingUpPage(login, this));
+                    break;
+                case PageName.user:
+                    MainFrame.Navigate(new UserPage(this,login));
+                    break;
+                case PageName.admin:
+                    MainFrame.Navigate(new AdminPage(this));
+                    break;
+                case PageName.manager:
+                    MainFrame.Navigate(new ManagerPage(this));
+                    break;
+                case PageName.ware:
+                    MainFrame.Navigate(new WarePage(this));
+                    break;
                 default:
-                    MessageBox.Show("Ошибка: не существует действия для указаной в бд роли");
+                    MessageBox.Show("Ошибка: Страници с таким названием не сделана(");
                     break;
             }
         }

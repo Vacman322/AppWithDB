@@ -1,0 +1,733 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DraperyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cloth">
+          <Key>
+            <PropertyRef Name="clothCode" />
+          </Key>
+          <Property Name="clothCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="clothName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="clothColor" Type="nvarchar" MaxLength="50" />
+          <Property Name="clothPattern" Type="nvarchar" MaxLength="50" />
+          <Property Name="clothPicture" Type="nvarchar" MaxLength="50" />
+          <Property Name="clothComposition" Type="nvarchar" MaxLength="50" />
+          <Property Name="clothWidth" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="clothLength" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="clothPrice" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClothProduct">
+          <Key>
+            <PropertyRef Name="clothCode" />
+            <PropertyRef Name="productCode" />
+          </Key>
+          <Property Name="clothCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="productCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClothWarehouse">
+          <Key>
+            <PropertyRef Name="rollCode" />
+            <PropertyRef Name="clothCode" />
+          </Key>
+          <Property Name="rollCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="clothCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="rollWidth" Type="int" Nullable="false" />
+          <Property Name="rollLength" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Furniture">
+          <Key>
+            <PropertyRef Name="furCode" />
+          </Key>
+          <Property Name="furCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="furName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="furType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="furWidth" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="furLength" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="furWeight" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="furPicture" Type="nvarchar" MaxLength="50" />
+          <Property Name="furPrice" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FurnitureWarehouse">
+          <Key>
+            <PropertyRef Name="batch" />
+            <PropertyRef Name="furCode" />
+          </Key>
+          <Property Name="batch" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="furCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="bathQty" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ord">
+          <Key>
+            <PropertyRef Name="ordCode" />
+          </Key>
+          <Property Name="ordCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ordDate" Type="date" Nullable="false" />
+          <Property Name="stageOfExecution" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="customerId" Type="int" Nullable="false" />
+          <Property Name="managerId" Type="int" />
+          <Property Name="ordPrice" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="OrderedProduct">
+          <Key>
+            <PropertyRef Name="ordCode" />
+            <PropertyRef Name="productCode" />
+          </Key>
+          <Property Name="ordCode" Type="int" Nullable="false" />
+          <Property Name="productCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProductQty" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="productCode" />
+          </Key>
+          <Property Name="productCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="productName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="productWidth" Type="int" Nullable="false" />
+          <Property Name="productLength" Type="int" Nullable="false" />
+          <Property Name="productPicture" Type="nvarchar" MaxLength="50" />
+          <Property Name="Сomment" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ProductFurniture">
+          <Key>
+            <PropertyRef Name="furCode" />
+            <PropertyRef Name="productCode" />
+          </Key>
+          <Property Name="furCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="productCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="placement" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="prodFurWidth" Type="int" />
+          <Property Name="prodFurLength" Type="int" />
+          <Property Name="prodFurRotation" Type="int" />
+          <Property Name="prodFurQty" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="role" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_ClothProduct_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ClothProduct" Type="Self.ClothProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productCode" />
+            </Principal>
+            <Dependent Role="ClothProduct">
+              <PropertyRef Name="productCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClothProduct_Сloth">
+          <End Role="Cloth" Type="Self.Cloth" Multiplicity="1" />
+          <End Role="ClothProduct" Type="Self.ClothProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cloth">
+              <PropertyRef Name="clothCode" />
+            </Principal>
+            <Dependent Role="ClothProduct">
+              <PropertyRef Name="clothCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClothWarehouse_Сloth">
+          <End Role="Cloth" Type="Self.Cloth" Multiplicity="1" />
+          <End Role="ClothWarehouse" Type="Self.ClothWarehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cloth">
+              <PropertyRef Name="clothCode" />
+            </Principal>
+            <Dependent Role="ClothWarehouse">
+              <PropertyRef Name="clothCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FurnitureWarehouse_Furniture">
+          <End Role="Furniture" Type="Self.Furniture" Multiplicity="1" />
+          <End Role="FurnitureWarehouse" Type="Self.FurnitureWarehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Furniture">
+              <PropertyRef Name="furCode" />
+            </Principal>
+            <Dependent Role="FurnitureWarehouse">
+              <PropertyRef Name="furCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ord_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Ord" Type="Self.Ord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="Ord">
+              <PropertyRef Name="customerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ord_User1">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Ord" Type="Self.Ord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="Ord">
+              <PropertyRef Name="managerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderedProduct_Ord">
+          <End Role="Ord" Type="Self.Ord" Multiplicity="1" />
+          <End Role="OrderedProduct" Type="Self.OrderedProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ord">
+              <PropertyRef Name="ordCode" />
+            </Principal>
+            <Dependent Role="OrderedProduct">
+              <PropertyRef Name="ordCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderedProduct_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="OrderedProduct" Type="Self.OrderedProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productCode" />
+            </Principal>
+            <Dependent Role="OrderedProduct">
+              <PropertyRef Name="productCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductFurniture_Furniture">
+          <End Role="Furniture" Type="Self.Furniture" Multiplicity="1" />
+          <End Role="ProductFurniture" Type="Self.ProductFurniture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Furniture">
+              <PropertyRef Name="furCode" />
+            </Principal>
+            <Dependent Role="ProductFurniture">
+              <PropertyRef Name="furCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductFurniture_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductFurniture" Type="Self.ProductFurniture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productCode" />
+            </Principal>
+            <Dependent Role="ProductFurniture">
+              <PropertyRef Name="productCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DraperyModelStoreContainer">
+          <EntitySet Name="Cloth" EntityType="Self.Cloth" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClothProduct" EntityType="Self.ClothProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClothWarehouse" EntityType="Self.ClothWarehouse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Furniture" EntityType="Self.Furniture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FurnitureWarehouse" EntityType="Self.FurnitureWarehouse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ord" EntityType="Self.Ord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderedProduct" EntityType="Self.OrderedProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductFurniture" EntityType="Self.ProductFurniture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ClothProduct_Product" Association="Self.FK_ClothProduct_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ClothProduct" EntitySet="ClothProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClothProduct_Сloth" Association="Self.FK_ClothProduct_Сloth">
+            <End Role="Cloth" EntitySet="Cloth" />
+            <End Role="ClothProduct" EntitySet="ClothProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClothWarehouse_Сloth" Association="Self.FK_ClothWarehouse_Сloth">
+            <End Role="Cloth" EntitySet="Cloth" />
+            <End Role="ClothWarehouse" EntitySet="ClothWarehouse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FurnitureWarehouse_Furniture" Association="Self.FK_FurnitureWarehouse_Furniture">
+            <End Role="Furniture" EntitySet="Furniture" />
+            <End Role="FurnitureWarehouse" EntitySet="FurnitureWarehouse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ord_User" Association="Self.FK_Ord_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Ord" EntitySet="Ord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ord_User1" Association="Self.FK_Ord_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Ord" EntitySet="Ord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderedProduct_Ord" Association="Self.FK_OrderedProduct_Ord">
+            <End Role="Ord" EntitySet="Ord" />
+            <End Role="OrderedProduct" EntitySet="OrderedProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderedProduct_Product" Association="Self.FK_OrderedProduct_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderedProduct" EntitySet="OrderedProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductFurniture_Furniture" Association="Self.FK_ProductFurniture_Furniture">
+            <End Role="Furniture" EntitySet="Furniture" />
+            <End Role="ProductFurniture" EntitySet="ProductFurniture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductFurniture_Product" Association="Self.FK_ProductFurniture_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductFurniture" EntitySet="ProductFurniture" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DraperyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cloth">
+          <Key>
+            <PropertyRef Name="clothCode" />
+          </Key>
+          <Property Name="clothCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="clothName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="clothColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="clothPattern" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="clothPicture" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="clothComposition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="clothWidth" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="clothLength" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="clothPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="ClothWarehouses" Relationship="Self.FK_ClothWarehouse_Сloth" FromRole="Cloth" ToRole="ClothWarehouse" />
+          <NavigationProperty Name="Products" Relationship="Self.ClothProduct" FromRole="Cloth" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ClothWarehouse">
+          <Key>
+            <PropertyRef Name="rollCode" />
+            <PropertyRef Name="clothCode" />
+          </Key>
+          <Property Name="rollCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="clothCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="rollWidth" Type="Int32" Nullable="false" />
+          <Property Name="rollLength" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cloth" Relationship="Self.FK_ClothWarehouse_Сloth" FromRole="ClothWarehouse" ToRole="Cloth" />
+        </EntityType>
+        <EntityType Name="Furniture">
+          <Key>
+            <PropertyRef Name="furCode" />
+          </Key>
+          <Property Name="furCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="furName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="furType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="furWidth" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="furLength" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="furWeight" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="furPicture" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="furPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="FurnitureWarehouses" Relationship="Self.FK_FurnitureWarehouse_Furniture" FromRole="Furniture" ToRole="FurnitureWarehouse" />
+          <NavigationProperty Name="ProductFurnitures" Relationship="Self.FK_ProductFurniture_Furniture" FromRole="Furniture" ToRole="ProductFurniture" />
+        </EntityType>
+        <EntityType Name="FurnitureWarehouse">
+          <Key>
+            <PropertyRef Name="batch" />
+            <PropertyRef Name="furCode" />
+          </Key>
+          <Property Name="batch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="furCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="bathQty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Furniture" Relationship="Self.FK_FurnitureWarehouse_Furniture" FromRole="FurnitureWarehouse" ToRole="Furniture" />
+        </EntityType>
+        <EntityType Name="Ord">
+          <Key>
+            <PropertyRef Name="ordCode" />
+          </Key>
+          <Property Name="ordCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ordDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="stageOfExecution" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="customerId" Type="Int32" Nullable="false" />
+          <Property Name="managerId" Type="Int32" />
+          <Property Name="ordPrice" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Ord_User" FromRole="Ord" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_Ord_User1" FromRole="Ord" ToRole="User" />
+          <NavigationProperty Name="OrderedProducts" Relationship="Self.FK_OrderedProduct_Ord" FromRole="Ord" ToRole="OrderedProduct" />
+        </EntityType>
+        <EntityType Name="OrderedProduct">
+          <Key>
+            <PropertyRef Name="ordCode" />
+            <PropertyRef Name="productCode" />
+          </Key>
+          <Property Name="ordCode" Type="Int32" Nullable="false" />
+          <Property Name="productCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductQty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ord" Relationship="Self.FK_OrderedProduct_Ord" FromRole="OrderedProduct" ToRole="Ord" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_OrderedProduct_Product" FromRole="OrderedProduct" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="productCode" />
+          </Key>
+          <Property Name="productCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="productName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="productWidth" Type="Int32" Nullable="false" />
+          <Property Name="productLength" Type="Int32" Nullable="false" />
+          <Property Name="productPicture" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Сomment" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrderedProducts" Relationship="Self.FK_OrderedProduct_Product" FromRole="Product" ToRole="OrderedProduct" />
+          <NavigationProperty Name="ProductFurnitures" Relationship="Self.FK_ProductFurniture_Product" FromRole="Product" ToRole="ProductFurniture" />
+          <NavigationProperty Name="Clothes" Relationship="Self.ClothProduct" FromRole="Product" ToRole="Cloth" />
+        </EntityType>
+        <EntityType Name="ProductFurniture">
+          <Key>
+            <PropertyRef Name="furCode" />
+            <PropertyRef Name="productCode" />
+          </Key>
+          <Property Name="furCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="productCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="placement" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="prodFurWidth" Type="Int32" />
+          <Property Name="prodFurLength" Type="Int32" />
+          <Property Name="prodFurRotation" Type="Int32" />
+          <Property Name="prodFurQty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Furniture" Relationship="Self.FK_ProductFurniture_Furniture" FromRole="ProductFurniture" ToRole="Furniture" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_ProductFurniture_Product" FromRole="ProductFurniture" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Ords" Relationship="Self.FK_Ord_User" FromRole="User" ToRole="Ord" />
+          <NavigationProperty Name="Ords1" Relationship="Self.FK_Ord_User1" FromRole="User" ToRole="Ord" />
+        </EntityType>
+        <Association Name="FK_ClothWarehouse_Сloth">
+          <End Role="Cloth" Type="Self.Cloth" Multiplicity="1" />
+          <End Role="ClothWarehouse" Type="Self.ClothWarehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cloth">
+              <PropertyRef Name="clothCode" />
+            </Principal>
+            <Dependent Role="ClothWarehouse">
+              <PropertyRef Name="clothCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FurnitureWarehouse_Furniture">
+          <End Role="Furniture" Type="Self.Furniture" Multiplicity="1" />
+          <End Role="FurnitureWarehouse" Type="Self.FurnitureWarehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Furniture">
+              <PropertyRef Name="furCode" />
+            </Principal>
+            <Dependent Role="FurnitureWarehouse">
+              <PropertyRef Name="furCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductFurniture_Furniture">
+          <End Role="Furniture" Type="Self.Furniture" Multiplicity="1" />
+          <End Role="ProductFurniture" Type="Self.ProductFurniture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Furniture">
+              <PropertyRef Name="furCode" />
+            </Principal>
+            <Dependent Role="ProductFurniture">
+              <PropertyRef Name="furCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ord_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Ord" Type="Self.Ord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="Ord">
+              <PropertyRef Name="customerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ord_User1">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Ord" Type="Self.Ord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="Ord">
+              <PropertyRef Name="managerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderedProduct_Ord">
+          <End Role="Ord" Type="Self.Ord" Multiplicity="1" />
+          <End Role="OrderedProduct" Type="Self.OrderedProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ord">
+              <PropertyRef Name="ordCode" />
+            </Principal>
+            <Dependent Role="OrderedProduct">
+              <PropertyRef Name="ordCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderedProduct_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="OrderedProduct" Type="Self.OrderedProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productCode" />
+            </Principal>
+            <Dependent Role="OrderedProduct">
+              <PropertyRef Name="productCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductFurniture_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductFurniture" Type="Self.ProductFurniture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productCode" />
+            </Principal>
+            <Dependent Role="ProductFurniture">
+              <PropertyRef Name="productCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClothProduct">
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <End Role="Cloth" Type="Self.Cloth" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DraperyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clothes" EntityType="Self.Cloth" />
+          <EntitySet Name="ClothWarehouses" EntityType="Self.ClothWarehouse" />
+          <EntitySet Name="Furnitures" EntityType="Self.Furniture" />
+          <EntitySet Name="FurnitureWarehouses" EntityType="Self.FurnitureWarehouse" />
+          <EntitySet Name="Ords" EntityType="Self.Ord" />
+          <EntitySet Name="OrderedProducts" EntityType="Self.OrderedProduct" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="ProductFurnitures" EntityType="Self.ProductFurniture" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_ClothWarehouse_Сloth" Association="Self.FK_ClothWarehouse_Сloth">
+            <End Role="Cloth" EntitySet="Clothes" />
+            <End Role="ClothWarehouse" EntitySet="ClothWarehouses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FurnitureWarehouse_Furniture" Association="Self.FK_FurnitureWarehouse_Furniture">
+            <End Role="Furniture" EntitySet="Furnitures" />
+            <End Role="FurnitureWarehouse" EntitySet="FurnitureWarehouses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductFurniture_Furniture" Association="Self.FK_ProductFurniture_Furniture">
+            <End Role="Furniture" EntitySet="Furnitures" />
+            <End Role="ProductFurniture" EntitySet="ProductFurnitures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ord_User" Association="Self.FK_Ord_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Ord" EntitySet="Ords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ord_User1" Association="Self.FK_Ord_User1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Ord" EntitySet="Ords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderedProduct_Ord" Association="Self.FK_OrderedProduct_Ord">
+            <End Role="Ord" EntitySet="Ords" />
+            <End Role="OrderedProduct" EntitySet="OrderedProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderedProduct_Product" Association="Self.FK_OrderedProduct_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="OrderedProduct" EntitySet="OrderedProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductFurniture_Product" Association="Self.FK_ProductFurniture_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductFurniture" EntitySet="ProductFurnitures" />
+          </AssociationSet>
+          <AssociationSet Name="ClothProduct" Association="Self.ClothProduct">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Cloth" EntitySet="Clothes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DraperyModelStoreContainer" CdmEntityContainer="DraperyEntities">
+          <EntitySetMapping Name="Clothes">
+            <EntityTypeMapping TypeName="DraperyModel.Cloth">
+              <MappingFragment StoreEntitySet="Cloth">
+                <ScalarProperty Name="clothCode" ColumnName="clothCode" />
+                <ScalarProperty Name="clothName" ColumnName="clothName" />
+                <ScalarProperty Name="clothColor" ColumnName="clothColor" />
+                <ScalarProperty Name="clothPattern" ColumnName="clothPattern" />
+                <ScalarProperty Name="clothPicture" ColumnName="clothPicture" />
+                <ScalarProperty Name="clothComposition" ColumnName="clothComposition" />
+                <ScalarProperty Name="clothWidth" ColumnName="clothWidth" />
+                <ScalarProperty Name="clothLength" ColumnName="clothLength" />
+                <ScalarProperty Name="clothPrice" ColumnName="clothPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClothWarehouses">
+            <EntityTypeMapping TypeName="DraperyModel.ClothWarehouse">
+              <MappingFragment StoreEntitySet="ClothWarehouse">
+                <ScalarProperty Name="rollCode" ColumnName="rollCode" />
+                <ScalarProperty Name="clothCode" ColumnName="clothCode" />
+                <ScalarProperty Name="rollWidth" ColumnName="rollWidth" />
+                <ScalarProperty Name="rollLength" ColumnName="rollLength" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Furnitures">
+            <EntityTypeMapping TypeName="DraperyModel.Furniture">
+              <MappingFragment StoreEntitySet="Furniture">
+                <ScalarProperty Name="furCode" ColumnName="furCode" />
+                <ScalarProperty Name="furName" ColumnName="furName" />
+                <ScalarProperty Name="furType" ColumnName="furType" />
+                <ScalarProperty Name="furWidth" ColumnName="furWidth" />
+                <ScalarProperty Name="furLength" ColumnName="furLength" />
+                <ScalarProperty Name="furWeight" ColumnName="furWeight" />
+                <ScalarProperty Name="furPicture" ColumnName="furPicture" />
+                <ScalarProperty Name="furPrice" ColumnName="furPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FurnitureWarehouses">
+            <EntityTypeMapping TypeName="DraperyModel.FurnitureWarehouse">
+              <MappingFragment StoreEntitySet="FurnitureWarehouse">
+                <ScalarProperty Name="batch" ColumnName="batch" />
+                <ScalarProperty Name="furCode" ColumnName="furCode" />
+                <ScalarProperty Name="bathQty" ColumnName="bathQty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ords">
+            <EntityTypeMapping TypeName="DraperyModel.Ord">
+              <MappingFragment StoreEntitySet="Ord">
+                <ScalarProperty Name="ordCode" ColumnName="ordCode" />
+                <ScalarProperty Name="ordDate" ColumnName="ordDate" />
+                <ScalarProperty Name="stageOfExecution" ColumnName="stageOfExecution" />
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+                <ScalarProperty Name="managerId" ColumnName="managerId" />
+                <ScalarProperty Name="ordPrice" ColumnName="ordPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderedProducts">
+            <EntityTypeMapping TypeName="DraperyModel.OrderedProduct">
+              <MappingFragment StoreEntitySet="OrderedProduct">
+                <ScalarProperty Name="ordCode" ColumnName="ordCode" />
+                <ScalarProperty Name="productCode" ColumnName="productCode" />
+                <ScalarProperty Name="ProductQty" ColumnName="ProductQty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="DraperyModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="productCode" ColumnName="productCode" />
+                <ScalarProperty Name="productName" ColumnName="productName" />
+                <ScalarProperty Name="productWidth" ColumnName="productWidth" />
+                <ScalarProperty Name="productLength" ColumnName="productLength" />
+                <ScalarProperty Name="productPicture" ColumnName="productPicture" />
+                <ScalarProperty Name="Сomment" ColumnName="Сomment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductFurnitures">
+            <EntityTypeMapping TypeName="DraperyModel.ProductFurniture">
+              <MappingFragment StoreEntitySet="ProductFurniture">
+                <ScalarProperty Name="furCode" ColumnName="furCode" />
+                <ScalarProperty Name="productCode" ColumnName="productCode" />
+                <ScalarProperty Name="placement" ColumnName="placement" />
+                <ScalarProperty Name="prodFurWidth" ColumnName="prodFurWidth" />
+                <ScalarProperty Name="prodFurLength" ColumnName="prodFurLength" />
+                <ScalarProperty Name="prodFurRotation" ColumnName="prodFurRotation" />
+                <ScalarProperty Name="prodFurQty" ColumnName="prodFurQty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DraperyModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DraperyModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ClothProduct" TypeName="DraperyModel.ClothProduct" StoreEntitySet="ClothProduct">
+            <EndProperty Name="Product">
+              <ScalarProperty Name="productCode" ColumnName="productCode" />
+            </EndProperty>
+            <EndProperty Name="Cloth">
+              <ScalarProperty Name="clothCode" ColumnName="clothCode" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

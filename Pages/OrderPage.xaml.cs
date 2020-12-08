@@ -10,18 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.Entity;
 
-namespace AppWithDB
+namespace AppWithDB.Pages
 {
     /// <summary>
-    /// Interaction logic for ManagerWindow.xaml
+    /// Interaction logic for OrderPage.xaml
     /// </summary>
-    public partial class ManagerWindow : Window
+    public partial class OrderPage : Page
     {
-        public ManagerWindow()
+        public OrderPage()
         {
             InitializeComponent();
+            var db = new DraperyEntities();
+            db.Ords.Load();
+            DbGrid.ItemsSource = db.Ords.Local.ToBindingList();
+            db.Dispose();
         }
     }
 }
