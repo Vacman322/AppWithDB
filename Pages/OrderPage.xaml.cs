@@ -24,10 +24,11 @@ namespace AppWithDB.Pages
         public OrderPage()
         {
             InitializeComponent();
-            var db = new DraperyEntities();
+
+            var db = UserData.Db;
             db.Ords.Load();
             DbGrid.ItemsSource = db.Ords.Local.ToBindingList();
-            db.Dispose();
+            UserData.Grid = DbGrid;
         }
     }
 }

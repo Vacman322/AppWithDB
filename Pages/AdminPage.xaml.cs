@@ -21,34 +21,46 @@ namespace AppWithDB.Pages
     public partial class AdminPage : Page
     {
         public MainWindow mv;
+        public ProductPadge ProdPage;
+        public ClothPage ClPage;
+        public FurniturePage FurPage;
+        public OrderPage OrdPage;
+        public AdminToolPage AdToolPage;
+
         public AdminPage(MainWindow mainWindow)
         {            
             InitializeComponent();
+
             mv = mainWindow;
+
+            UserData.Db = new DraperyEntities();
+
             mv.SizeToContent = SizeToContent.Manual;
             mv.WindowState = WindowState.Maximized;
-            MessageBox.Show("Редактирование ещё не сделано(");
+
+            AdToolPage = new AdminToolPage(this);
+            ToolFrame.Navigate(AdToolPage);
+            ProdPage = HelperClass.ShowPage(UserFrame, ProdPage, TableName.product);
         }
 
         private void ProductMenuItmeClick(object sender, RoutedEventArgs e)
         {
-            UserFrame.Navigate(new ProductPadge());
+            ProdPage = HelperClass.ShowPage(UserFrame, ProdPage, TableName.product);
         }
 
         private void ClothMenuitemClick(object sender, RoutedEventArgs e)
         {
-            UserFrame.Navigate(new ClothPage());
+            ClPage = HelperClass.ShowPage(UserFrame, ClPage,TableName.cloth);
         }
 
         private void FurnitureMenuItemClick(object sender, RoutedEventArgs e)
         {
-            UserFrame.Navigate(new FurniturePage());
+            FurPage = HelperClass.ShowPage(UserFrame, FurPage,TableName.furniture);
         }
 
         private void OrderMenuItemClick(object sender, RoutedEventArgs e)
         {
-            UserFrame.Navigate(new OrderPage());
+            OrdPage = HelperClass.ShowPage(UserFrame,OrdPage,TableName.order);
         }
-
     }
 }

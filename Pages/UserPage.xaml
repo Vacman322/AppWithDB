@@ -23,11 +23,11 @@
                 <MenuItem Header="Изделия" Click="ProductMenuItmeClick"></MenuItem>
                 <MenuItem Header="Ткани" Click="ClothMenuitemClick"></MenuItem>
                 <MenuItem Header="Фурнитура" Click="FurnitureMenuItemClick"></MenuItem>
-                <MenuItem Header="Заказы" Click="OrderMenuItemClick"></MenuItem>
             </MenuItem>
             <MenuItem Header="Конструктор" Click="ConstructorMenuItemClick"></MenuItem>
             <MenuItem Header="Заказ" Click="UserOrderMenuItemClick"></MenuItem>
         </Menu>
         <Frame x:Name="UserFrame" Grid.Row="2" Grid.Column="1"/>
+        <Frame x:Name="ToolFrame" Grid.Row="2" Grid.Column="0"/>
     </Grid>
 </Page>

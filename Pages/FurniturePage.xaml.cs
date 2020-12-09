@@ -24,10 +24,10 @@ namespace AppWithDB.Pages
         public FurniturePage()
         {
             InitializeComponent();
-            var db = new DraperyEntities();
+            var db = UserData.Db;
             db.Furnitures.Load();
             DbGrid.ItemsSource = db.Furnitures.Local.ToBindingList();
-            db.Dispose();
+            UserData.Grid = DbGrid;
         }
     }
 }

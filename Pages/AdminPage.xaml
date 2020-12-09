@@ -27,5 +27,6 @@
             </MenuItem>
         </Menu>
         <Frame x:Name="UserFrame" Grid.Row="2" Grid.Column="1"/>
+        <Frame x:Name="ToolFrame" Grid.Row="2" Grid.Column="0"/>
     </Grid>
 </Page>

@@ -70,6 +70,8 @@
     <Compile Include="ClothWarehouse.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="HelperClass.cs" />
+    <Compile Include="TableName.cs" />
     <Compile Include="DbModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -100,6 +102,9 @@
     <Compile Include="PageName.cs" />
     <Compile Include="Pages\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminToolPage.xaml.cs">
+      <DependentUpon>AdminToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ClothPage.xaml.cs">
       <DependentUpon>ClothPage.xaml</DependentUpon>
@@ -146,7 +151,12 @@
     <Compile Include="User.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserData.cs" />
     <Page Include="Pages\AdminPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AdminToolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

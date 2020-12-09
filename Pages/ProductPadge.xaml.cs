@@ -21,13 +21,16 @@ namespace AppWithDB.Pages
     /// </summary>
     public partial class ProductPadge : Page
     {
+        public DraperyEntities Db;
+
         public ProductPadge()
         {
             InitializeComponent();
-            var db = new DraperyEntities();
-            db.Products.Load();
-            DbGrid.ItemsSource = db.Products.Local.ToBindingList();
-            db.Dispose();
+            Db = UserData.Db;
+            Db.Products.Load();
+            DbGrid.ItemsSource = Db.Products.Local.ToBindingList();
+            UserData.Grid = DbGrid;
         }
+
     }
 }

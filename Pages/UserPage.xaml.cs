@@ -20,34 +20,36 @@ namespace AppWithDB.Pages
     /// </summary>
     public partial class UserPage : Page
     {
-        string login;
         public MainWindow mv;
+        public ProductPadge ProdPage;
+        public ClothPage ClPage;
+        public FurniturePage FurPage;
+        public OrderPage OrdPage;
+
         public UserPage(MainWindow mainWindow, string login)
         {
             InitializeComponent();
-            this.login = login;
+
+            UserData.login = login;
+            UserData.Db = new DraperyEntities();
+
             mv = mainWindow;
             mv.SizeToContent = SizeToContent.Manual;
             mv.WindowState = WindowState.Maximized;
         }
         private void ProductMenuItmeClick(object sender, RoutedEventArgs e)
         {
-            UserFrame.Navigate(new ProductPadge());
+            ProdPage = HelperClass.ShowPage(UserFrame, ProdPage, TableName.product);
         }
 
         private void ClothMenuitemClick(object sender, RoutedEventArgs e)
         {
-            UserFrame.Navigate(new ClothPage());
+            ClPage = HelperClass.ShowPage(UserFrame, ClPage, TableName.cloth);
         }
 
         private void FurnitureMenuItemClick(object sender, RoutedEventArgs e)
         {
-            UserFrame.Navigate(new FurniturePage());
-        }
-
-        private void OrderMenuItemClick(object sender, RoutedEventArgs e)
-        {
-            UserFrame.Navigate(new OrderPage());
+            FurPage = HelperClass.ShowPage(UserFrame, FurPage, TableName.furniture);
         }
         
         private void ConstructorMenuItemClick(object sender, RoutedEventArgs e)

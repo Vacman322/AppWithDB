@@ -55,5 +55,10 @@ namespace AppWithDB
                     break;
             }
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (UserData.Db != null) UserData.Db.Dispose();
+        }
     }
 }
