@@ -21,22 +21,25 @@ namespace AppWithDB.Pages
     public partial class WarePage : Page
     {
         public MainWindow mv;
+        public ClothPage ClPage;
+        public FurniturePage FurPage;
         public WarePage(MainWindow mainWindow)
         {
             InitializeComponent();
             mv = mainWindow;
+            UserData.Db = new DraperyEntities();
             mv.SizeToContent = SizeToContent.Manual;
             mv.WindowState = WindowState.Maximized;
         }
 
         private void ClothMenuitemClick(object sender, RoutedEventArgs e)
         {
-            UserFrame.Navigate(new ClothPage());
+            ClPage = HelperClass.ShowPage(WareFrame, ClPage, TableName.cloth);
         }
 
         private void FurnitureMenuItemClick(object sender, RoutedEventArgs e)
         {
-            UserFrame.Navigate(new FurniturePage());
+            FurPage = HelperClass.ShowPage(WareFrame, FurPage, TableName.furniture);
         }
     }
 }

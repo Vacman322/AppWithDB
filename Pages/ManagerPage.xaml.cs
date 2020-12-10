@@ -21,21 +21,25 @@ namespace AppWithDB.Pages
     public partial class ManagerPage : Page
     {
         public MainWindow mv;
+        public OrderPage OrdPage;
+        public EditToolPage EdToolPage;
         public ManagerPage(MainWindow mainWindow)
         {
             InitializeComponent();
             mv = mainWindow;
             mv.SizeToContent = SizeToContent.Manual;
             mv.WindowState = WindowState.Maximized;
-        }
-        private void OrderMenuItemClick(object sender, RoutedEventArgs e)
-        {
-            UserFrame.Navigate(new OrderPage());
+
+            UserData.Db = new DraperyEntities();
+
+            EdToolPage = new EditToolPage();
+            ManagerToolFrame.Navigate(EdToolPage);
+            OrdPage = HelperClass.ShowPage(ManagerFrame, OrdPage, TableName.order, false);
         }
 
         private void OrderEditMenuItemClick(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Ещё не сделано");
+            OrdPage = HelperClass.ShowPage(ManagerFrame, OrdPage, TableName.order, false);
         }
     }
 }

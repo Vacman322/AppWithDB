@@ -19,24 +19,28 @@ namespace AppWithDB.Pages
     /// <summary>
     /// Interaction logic for AdminToolPage.xaml
     /// </summary>
-    public partial class AdminToolPage : Page
+    public partial class EditToolPage : Page
     {
-        public AdminPage ap;
-        public AdminToolPage(AdminPage page)
+        public EditToolPage()
         {
             InitializeComponent();
-
-            ap = page;
         }
 
         private void RefreshButtonClick(object sender, RoutedEventArgs e)
         {
-            UserData.Db.SaveChanges();
+            try
+            {
+                UserData.Db.SaveChanges();
+            }
+            catch (Exception ex) // если будет ошибка то в таблице в програме остнется не правильная запись 
+            {
+                MessageBox.Show("Ошибка при сохранении в БД: " + ex);
+            }
         }
         
         private void DelButtonClick(object sender, RoutedEventArgs e)
         {
-            DelFromDb();
+            HelperClass.DelFromDb();
         }
 
         void DelFromDb()

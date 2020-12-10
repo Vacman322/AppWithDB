@@ -103,8 +103,8 @@
     <Compile Include="Pages\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AdminToolPage.xaml.cs">
-      <DependentUpon>AdminToolPage.xaml</DependentUpon>
+    <Compile Include="Pages\EditToolPage.xaml.cs">
+      <DependentUpon>EditToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ClothPage.xaml.cs">
       <DependentUpon>ClothPage.xaml</DependentUpon>
@@ -156,7 +156,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\AdminToolPage.xaml">
+    <Page Include="Pages\EditToolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

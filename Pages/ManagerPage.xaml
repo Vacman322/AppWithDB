@@ -19,9 +19,9 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-            <MenuItem Header="Заказы" Click="OrderMenuItemClick"></MenuItem>
             <MenuItem Header="Редактор заказов" Click="OrderEditMenuItemClick"></MenuItem>
         </Menu>
-        <Frame x:Name="UserFrame" Grid.Row="2" Grid.Column="1"/>
+        <Frame x:Name="ManagerFrame" Grid.Row="2" Grid.Column="1"/>
+        <Frame x:Name="ManagerToolFrame" Grid.Row="2" Grid.Column="0"/>
     </Grid>
 </Page>

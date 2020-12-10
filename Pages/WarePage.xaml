@@ -24,6 +24,6 @@
                 <MenuItem Header="Фурнитура" Click="FurnitureMenuItemClick"></MenuItem>
             </MenuItem>
         </Menu>
-        <Frame x:Name="UserFrame" Grid.Row="2" Grid.Column="1"/>
+        <Frame x:Name="WareFrame" Grid.Row="2" Grid.Column="1"/>
     </Grid>
 </Page>

@@ -25,8 +25,8 @@ namespace AppWithDB.Pages
         {
             InitializeComponent();
             mv = mainWindow;
-            passTextBox.Password = "pass";
-            loginTextBox.Text = "user1";
+            passTextBox.Password = "manager";
+            loginTextBox.Text = "manager";
         }
         private void signButton_Click(object sender, RoutedEventArgs e)
         {

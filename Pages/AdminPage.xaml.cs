@@ -25,7 +25,7 @@ namespace AppWithDB.Pages
         public ClothPage ClPage;
         public FurniturePage FurPage;
         public OrderPage OrdPage;
-        public AdminToolPage AdToolPage;
+        public EditToolPage AdToolPage;
 
         public AdminPage(MainWindow mainWindow)
         {            
@@ -38,29 +38,29 @@ namespace AppWithDB.Pages
             mv.SizeToContent = SizeToContent.Manual;
             mv.WindowState = WindowState.Maximized;
 
-            AdToolPage = new AdminToolPage(this);
+            AdToolPage = new EditToolPage();
             ToolFrame.Navigate(AdToolPage);
-            ProdPage = HelperClass.ShowPage(UserFrame, ProdPage, TableName.product);
+            ProdPage = HelperClass.ShowPage(UserFrame, ProdPage, TableName.product,false);
         }
 
         private void ProductMenuItmeClick(object sender, RoutedEventArgs e)
         {
-            ProdPage = HelperClass.ShowPage(UserFrame, ProdPage, TableName.product);
+            ProdPage = HelperClass.ShowPage(UserFrame, ProdPage, TableName.product,false);
         }
 
         private void ClothMenuitemClick(object sender, RoutedEventArgs e)
         {
-            ClPage = HelperClass.ShowPage(UserFrame, ClPage,TableName.cloth);
+            ClPage = HelperClass.ShowPage(UserFrame, ClPage,TableName.cloth, false);
         }
 
         private void FurnitureMenuItemClick(object sender, RoutedEventArgs e)
         {
-            FurPage = HelperClass.ShowPage(UserFrame, FurPage,TableName.furniture);
+            FurPage = HelperClass.ShowPage(UserFrame, FurPage,TableName.furniture, false);
         }
 
         private void OrderMenuItemClick(object sender, RoutedEventArgs e)
         {
-            OrdPage = HelperClass.ShowPage(UserFrame,OrdPage,TableName.order);
+            OrdPage = HelperClass.ShowPage(UserFrame,OrdPage,TableName.order, false);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace AppWithDB
         /// <summary>
         /// Переводит Page на Frame, если Page равна Null то присваивает ей значение и указывает данные в UserData
         /// </summary>
-        public static T ShowPage<T>(Frame frame, T page, TableName tableName) where T : new()
+        public static T ShowPage<T>(Frame frame, T page, TableName tableName, bool isReadOnlyGrid = true) where T : new()
         {
             if (page == null) page = new T();
             frame.Navigate(page);
@@ -26,24 +26,28 @@ namespace AppWithDB
                     {
                         var p = page as ProductPadge;
                         UserData.Grid = p.DbGrid;
+                        UserData.Grid.IsReadOnly = isReadOnlyGrid;
                     }
                     break;
                 case TableName.cloth:
                     {
                         var p = page as ClothPage;
                         UserData.Grid = p.DbGrid;
+                        UserData.Grid.IsReadOnly = isReadOnlyGrid;
                     }
                     break;
                 case TableName.furniture:
                     {
                         var p = page as FurniturePage;
                         UserData.Grid = p.DbGrid;
+                        UserData.Grid.IsReadOnly = isReadOnlyGrid;
                     }
                     break;
                 case TableName.order:
                     {
                         var p = page as OrderPage;
                         UserData.Grid = p.DbGrid;
+                        UserData.Grid.IsReadOnly = isReadOnlyGrid;
                     }
                     break;
                 default:
@@ -74,18 +78,6 @@ namespace AppWithDB
                 default:
                     break;
             }
-        }
-
-        public static void DelFromTable<T>(DbSet<T> ts) where T : class
-        {
-            if (UserData.Grid != null && UserData.Grid.SelectedItems.Count > 0)
-            {
-                for (int i = 0; i < UserData.Grid.SelectedItems.Count; i++)
-                {
-                    T product = (T)UserData.Grid.SelectedItems[i];
-                    if (product != null) ts.Remove(product);
-                }
-            }
             try
             {
                 UserData.Db.SaveChanges();
@@ -93,6 +85,52 @@ namespace AppWithDB
             catch (Exception ex)
             {
                 MessageBox.Show("Ошибка при сохранении в БД: " + ex);
+
+                UserData.Db.Dispose();
+                UserData.Db = new DraperyEntities();
+
+                switch (UserData.CurrentTableName)
+                {
+                    case TableName.product:
+                        {
+                            UserData.Db.Products.Load();
+                            UserData.Grid.ItemsSource = UserData.Db.Products.Local.ToBindingList();
+                        }
+                        break;
+                    case TableName.cloth:
+                        {
+                            UserData.Db.Clothes.Load();
+                            UserData.Grid.ItemsSource = UserData.Db.Clothes.Local.ToBindingList();
+                        }
+                        break;
+                    case TableName.furniture:
+                        {
+                            UserData.Db.Furnitures.Load();
+                            UserData.Grid.ItemsSource = UserData.Db.Furnitures.Local.ToBindingList();
+                        }
+                        break;
+                    case TableName.order:
+                        {
+                            UserData.Db.Ords.Load();
+                            UserData.Grid.ItemsSource = UserData.Db.Ords.Local.ToBindingList();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        public static void DelFromTable<T>(DbSet<T> ts) where T : class
+        {
+            T record = null;
+            if (UserData.Grid != null && UserData.Grid.SelectedItems.Count > 0)
+            {
+                for (int i = 0; i < UserData.Grid.SelectedItems.Count; i++)
+                {
+                    record = (T)UserData.Grid.SelectedItems[i];
+                    if (record != null) ts.Remove(record);
+                }
             }
         }
     }
