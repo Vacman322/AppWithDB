@@ -1,0 +1,51 @@
+﻿<Page x:Class="AppWithDB.Pages.ProdConstructorPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AppWithDB.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ConstructorPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Продукт:" FontSize="30" Grid.ColumnSpan="2"/>
+
+        <Label Grid.Row="1" Content="Размещение фурнитуры:" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="PlacementTextBox" Margin="5,5,5,5"/>
+
+        <Label Grid.Row="2" Content="Количество фурнитуры:" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="FurCountTextBox" Margin="5,5,5,5"/>
+
+
+        <Label Content="Необязательные поля" Grid.ColumnSpan="2" Grid.Row="3"/>
+
+        <Label Grid.Row="4" Content="Ширина фурнитуры:" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        <TextBox Grid.Row="4" Grid.Column="1" x:Name="FurWidthTextBox" Margin="5,5,5,5"/>
+
+        <Label Grid.Row="5" Content="Длина фурнитуры:" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        <TextBox Grid.Row="5" Grid.Column="1" x:Name="FurLengthTextBox" Margin="5,5,5,5"/>
+
+        <Label Grid.Row="6" Content="Поворот фурнитуры:" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        <TextBox Grid.Row="6" Grid.Column="1" x:Name="FurRotationTextBox" Margin="5,5,5,5"/>
+
+        <Button Grid.Row="7" Content="Создать" Click="CreateOrderClick"/>
+    </Grid>
+</Page>

@@ -17,13 +17,17 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="25"/>
             <RowDefinition/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <MenuItem Header="Списки">
                 <MenuItem Header="Ткани" Click="ClothMenuitemClick"></MenuItem>
                 <MenuItem Header="Фурнитура" Click="FurnitureMenuItemClick"></MenuItem>
+                <MenuItem Header="Изделия" Click="ProductMenuItmeClick"></MenuItem>
             </MenuItem>
+            <MenuItem Header="Конструктор материала" Click="ProdConstructMenuItemClick"></MenuItem>
         </Menu>
         <Frame x:Name="WareFrame" Grid.Row="2" Grid.Column="1"/>
+        <Frame x:Name="WareToolFrame" Grid.Row="2" Grid.Column="0"/>
     </Grid>
 </Page>

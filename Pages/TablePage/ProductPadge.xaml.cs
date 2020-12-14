@@ -22,14 +22,18 @@ namespace AppWithDB.Pages
     public partial class ProductPadge : Page
     {
         public DraperyEntities Db;
+        public DataGrid DatabGrid { get; set; }
 
         public ProductPadge()
         {
             InitializeComponent();
+
+            DatabGrid = DbGrid;
             Db = UserData.Db;
             Db.Products.Load();
             DbGrid.ItemsSource = Db.Products.Local.ToBindingList();
             UserData.Grid = DbGrid;
+            
         }
 
     }

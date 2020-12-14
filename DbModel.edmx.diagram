@@ -5,8 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4025142f233f4937aff16c5f02a6b31b" Name="Diagram1">
-        <EntityTypeShape EntityType="DraperyModel.Cloth" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DraperyModel.ClothWarehouse" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DraperyModel.Cloth" Width="1.5" PointX="3.375" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DraperyModel.ClothWarehouse" Width="1.5" PointX="5.875" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DraperyModel.Furniture" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DraperyModel.FurnitureWarehouse" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DraperyModel.Ord" Width="1.5" PointX="3.75" PointY="12.75" IsExpanded="true" />

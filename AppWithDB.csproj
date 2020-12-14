@@ -71,6 +71,12 @@
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="HelperClass.cs" />
+    <Compile Include="Pages\ToolPage\AddToolPage.xaml.cs">
+      <DependentUpon>AddToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserOrderConstructorPage.xaml.cs">
+      <DependentUpon>UserOrderConstructorPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TableName.cs" />
     <Compile Include="DbModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -103,31 +109,31 @@
     <Compile Include="Pages\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\EditToolPage.xaml.cs">
+    <Compile Include="Pages\ToolPage\EditToolPage.xaml.cs">
       <DependentUpon>EditToolPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ClothPage.xaml.cs">
+    <Compile Include="Pages\TablePage\ClothPage.xaml.cs">
       <DependentUpon>ClothPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ConstructorPage.xaml.cs">
-      <DependentUpon>ConstructorPage.xaml</DependentUpon>
+    <Compile Include="Pages\ProdConstructorPage.xaml.cs">
+      <DependentUpon>ProdConstructorPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\FurniturePage.xaml.cs">
+    <Compile Include="Pages\TablePage\FurniturePage.xaml.cs">
       <DependentUpon>FurniturePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\UserOrderPage.xaml.cs">
+    <Compile Include="Pages\TablePage\UserOrderPage.xaml.cs">
       <DependentUpon>UserOrderPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ManagerPage.xaml.cs">
       <DependentUpon>ManagerPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\OrderPage.xaml.cs">
+    <Compile Include="Pages\TablePage\OrderPage.xaml.cs">
       <DependentUpon>OrderPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ProductPadge.xaml.cs">
+    <Compile Include="Pages\TablePage\ProductPadge.xaml.cs">
       <DependentUpon>ProductPadge.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\SingUpPage.xaml.cs">
@@ -152,23 +158,27 @@
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="UserData.cs" />
+    <Page Include="Pages\ToolPage\AddToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AdminPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\EditToolPage.xaml">
+    <Page Include="Pages\ToolPage\EditToolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ClothPage.xaml">
+    <Page Include="Pages\TablePage\ClothPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ConstructorPage.xaml">
+    <Page Include="Pages\ProdConstructorPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\FurniturePage.xaml">
+    <Page Include="Pages\TablePage\FurniturePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -176,7 +186,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\UserOrderPage.xaml">
+    <Page Include="Pages\UserOrderConstructorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TablePage\UserOrderPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -184,11 +198,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\OrderPage.xaml">
+    <Page Include="Pages\TablePage\OrderPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ProductPadge.xaml">
+    <Page Include="Pages\TablePage\ProductPadge.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

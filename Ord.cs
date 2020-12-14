@@ -28,7 +28,7 @@ namespace AppWithDB
         public Nullable<decimal> ordPrice { get; set; }
     
         public virtual User User { get; set; }
-        public virtual User User1 { get; set; }
+        public virtual User Manager { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderedProduct> OrderedProducts { get; set; }
     }

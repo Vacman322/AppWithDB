@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.Entity;
 
 namespace AppWithDB.Pages
 {
@@ -23,6 +24,9 @@ namespace AppWithDB.Pages
         public UserOrderPage()
         {
             InitializeComponent();
+            //UserData.Db.Ords.Load();
+            var bind = UserData.Db.Ords.Where(o => o.customerId == UserData.UserInf.userId).ToList();
+            DbGrid.ItemsSource = bind;
         }
     }
 }

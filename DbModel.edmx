@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DraperyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DraperyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cloth">
           <Key>
             <PropertyRef Name="clothCode" />
@@ -65,7 +65,7 @@
           </Key>
           <Property Name="ordCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ordDate" Type="date" Nullable="false" />
-          <Property Name="stageOfExecution" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="stageOfExecution" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="customerId" Type="int" Nullable="false" />
           <Property Name="managerId" Type="int" />
           <Property Name="ordPrice" Type="decimal" Precision="10" Scale="2" />
@@ -296,8 +296,7 @@
             <End Role="ProductFurniture" EntitySet="ProductFurniture" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DraperyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -359,12 +358,12 @@
           </Key>
           <Property Name="ordCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ordDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="stageOfExecution" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="stageOfExecution" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="customerId" Type="Int32" Nullable="false" />
           <Property Name="managerId" Type="Int32" />
           <Property Name="ordPrice" Type="Decimal" Precision="10" Scale="2" />
           <NavigationProperty Name="User" Relationship="Self.FK_Ord_User" FromRole="Ord" ToRole="User" />
-          <NavigationProperty Name="User1" Relationship="Self.FK_Ord_User1" FromRole="Ord" ToRole="User" />
+          <NavigationProperty Name="Manager" Relationship="Self.FK_Ord_User1" FromRole="Ord" ToRole="User" />
           <NavigationProperty Name="OrderedProducts" Relationship="Self.FK_OrderedProduct_Ord" FromRole="Ord" ToRole="OrderedProduct" />
         </EntityType>
         <EntityType Name="OrderedProduct">

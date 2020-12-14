@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Reflection;
 
 namespace AppWithDB
 {
@@ -20,39 +21,45 @@ namespace AppWithDB
             if (page == null) page = new T();
             frame.Navigate(page);
             UserData.CurrentTableName = tableName;
-            switch (tableName)
-            {
-                case TableName.product:
-                    {
-                        var p = page as ProductPadge;
-                        UserData.Grid = p.DbGrid;
-                        UserData.Grid.IsReadOnly = isReadOnlyGrid;
-                    }
-                    break;
-                case TableName.cloth:
-                    {
-                        var p = page as ClothPage;
-                        UserData.Grid = p.DbGrid;
-                        UserData.Grid.IsReadOnly = isReadOnlyGrid;
-                    }
-                    break;
-                case TableName.furniture:
-                    {
-                        var p = page as FurniturePage;
-                        UserData.Grid = p.DbGrid;
-                        UserData.Grid.IsReadOnly = isReadOnlyGrid;
-                    }
-                    break;
-                case TableName.order:
-                    {
-                        var p = page as OrderPage;
-                        UserData.Grid = p.DbGrid;
-                        UserData.Grid.IsReadOnly = isReadOnlyGrid;
-                    }
-                    break;
-                default:
-                    break;
-            }
+
+            var t = page.GetType();
+            var i = t.GetField("DbGrid", BindingFlags.NonPublic | BindingFlags.Instance);
+            UserData.Grid = i.GetValue(page) as DataGrid;
+            UserData.Grid.IsReadOnly = isReadOnlyGrid;
+
+            //switch (tableName)
+            //{
+            //    case TableName.product:
+            //        {
+            //            var p = page as ProductPadge;
+            //            UserData.Grid = p.DbGrid;
+            //            UserData.Grid.IsReadOnly = isReadOnlyGrid;
+            //        }
+            //        break;
+            //    case TableName.cloth:
+            //        {
+            //            var p = page as ClothPage;
+            //            UserData.Grid = p.DbGrid;
+            //            UserData.Grid.IsReadOnly = isReadOnlyGrid;
+            //        }
+            //        break;
+            //    case TableName.furniture:
+            //        {
+            //            var p = page as FurniturePage;
+            //            UserData.Grid = p.DbGrid;
+            //            UserData.Grid.IsReadOnly = isReadOnlyGrid;
+            //        }
+            //        break;
+            //    case TableName.order:
+            //        {
+            //            var p = page as OrderPage;
+            //            UserData.Grid = p.DbGrid;
+            //            UserData.Grid.IsReadOnly = isReadOnlyGrid;
+            //        }
+            //        break;
+            //    default:
+            //        break;
+            //}
             return page;
         }
 

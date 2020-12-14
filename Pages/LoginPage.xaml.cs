@@ -25,8 +25,8 @@ namespace AppWithDB.Pages
         {
             InitializeComponent();
             mv = mainWindow;
-            passTextBox.Password = "manager";
-            loginTextBox.Text = "manager";
+            loginTextBox.Text = "User1";
+            passTextBox.Password = "pass";
         }
         private void signButton_Click(object sender, RoutedEventArgs e)
         {
@@ -49,6 +49,7 @@ namespace AppWithDB.Pages
                 {
                     MessageBox.Show("Авторизация прошла успешно");
                     var roleInDB = result.FirstOrDefault().role;
+                    UserData.UserInf = result.First();
                     var role = new PageName();
                     if (Enum.TryParse(roleInDB, out role))
                         mv.OpenPage(role,login);
