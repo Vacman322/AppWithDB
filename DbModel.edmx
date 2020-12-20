@@ -12,8 +12,8 @@
           <Property Name="clothCode" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="clothName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="clothColor" Type="nvarchar" MaxLength="50" />
-          <Property Name="clothPattern" Type="nvarchar" MaxLength="50" />
-          <Property Name="clothPicture" Type="nvarchar" MaxLength="50" />
+          <Property Name="clothPicture" Type="nvarchar" MaxLength="300" />
+          <Property Name="clothPattern" Type="nvarchar" MaxLength="200" />
           <Property Name="clothComposition" Type="nvarchar" MaxLength="50" />
           <Property Name="clothWidth" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="clothLength" Type="decimal" Precision="10" Scale="2" Nullable="false" />
@@ -307,8 +307,8 @@
           <Property Name="clothCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="clothName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="clothColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="clothPattern" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="clothPicture" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="clothPattern" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="clothPicture" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="clothComposition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="clothWidth" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="clothLength" Type="Decimal" Precision="10" Scale="2" Nullable="false" />

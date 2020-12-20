@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Reflection;
+using System.Windows.Input;
 
 namespace AppWithDB
 {
@@ -21,6 +22,8 @@ namespace AppWithDB
             if (page == null) page = new T();
             frame.Navigate(page);
             UserData.CurrentTableName = tableName;
+
+            if (tableName == TableName.construct) return page;
 
             var t = page.GetType();
             var i = t.GetField("DbGrid", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -61,6 +64,30 @@ namespace AppWithDB
             //        break;
             //}
             return page;
+        }
+
+        public static List<object> GetAllFieldsWithText(object obj)
+        {
+            return obj.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance)
+                .Where(f => f.FieldType == typeof(TextBox) || f.FieldType == typeof(ComboBox))
+                .Select(f => f.GetValue(obj))
+                .ToList();
+        }
+
+        public static bool IsAllTextFieldsFill(object obj)
+        {
+            var fields = HelperClass.GetAllFieldsWithText(obj);
+            return fields
+                .Select(f => !string.IsNullOrEmpty(f.GetType().GetProperty("Text").GetValue(f) as string))
+                .Aggregate((b1, b2) => b1 && b2);
+        }
+
+        public static void DigitOnlyInput(TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0))
+            {
+                e.Handled = true;
+            }
         }
 
         /// <summary>

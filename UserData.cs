@@ -15,7 +15,30 @@ namespace AppWithDB
         public static DraperyEntities Db;
         public static DataGrid Grid;
         public static TableName CurrentTableName;
-        public static List<OrderedRecord> orderedRecords { get; set; }
+        public static OrderedRecords OrderedRecordsInf { get; set; }
+    }
+
+    public class OrderedRecords
+    {
+        public List<OrderedRecord> OrderedRecordsList { get; }
+        public OrderedRecord Current { get; set; }
+
+        public OrderedRecords()
+        {
+            OrderedRecordsList = new List<OrderedRecord>();
+        }
+
+        public void Add(OrderedRecord record)
+        {
+            OrderedRecordsList.Add(record);
+            Current = record;
+        }
+
+        public void Remove(OrderedRecord record)
+        {
+            OrderedRecordsList.Remove(record);
+            Current = OrderedRecordsList.LastOrDefault();
+        }
     }
 
     public class OrderedRecord : INotifyPropertyChanged

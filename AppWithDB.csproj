@@ -44,6 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
@@ -64,6 +65,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddCloth.xaml.cs">
+      <DependentUpon>AddCloth.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Cloth.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
@@ -71,11 +75,11 @@
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="HelperClass.cs" />
-    <Compile Include="Pages\ToolPage\AddToolPage.xaml.cs">
-      <DependentUpon>AddToolPage.xaml</DependentUpon>
+    <Compile Include="Pages\ProductConstructorPage.xaml.cs">
+      <DependentUpon>ProductConstructorPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\UserOrderConstructorPage.xaml.cs">
-      <DependentUpon>UserOrderConstructorPage.xaml</DependentUpon>
+    <Compile Include="Pages\UserBasketPage.xaml.cs">
+      <DependentUpon>UserBasketPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="TableName.cs" />
     <Compile Include="DbModel.Context.cs">
@@ -114,9 +118,6 @@
     </Compile>
     <Compile Include="Pages\TablePage\ClothPage.xaml.cs">
       <DependentUpon>ClothPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ProdConstructorPage.xaml.cs">
-      <DependentUpon>ProdConstructorPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\TablePage\FurniturePage.xaml.cs">
       <DependentUpon>FurniturePage.xaml</DependentUpon>
@@ -158,7 +159,11 @@
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="UserData.cs" />
-    <Page Include="Pages\ToolPage\AddToolPage.xaml">
+    <Page Include="AddCloth.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ProductConstructorPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -174,19 +179,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ProdConstructorPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\TablePage\FurniturePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\LoginPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\UserOrderConstructorPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -207,6 +204,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\SingUpPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UserBasketPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

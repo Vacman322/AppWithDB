@@ -5,6 +5,7 @@
         product,
         cloth,
         furniture,
-        order
+        order,
+        construct
     }
 }

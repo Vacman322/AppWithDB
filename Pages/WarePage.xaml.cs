@@ -24,6 +24,7 @@ namespace AppWithDB.Pages
         public ClothPage ClPage;
         public FurniturePage FurPage;
         public ProductPadge ProdPage;
+        public ProductConstructorPage Constr;
         public WarePage(MainWindow mainWindow)
         {
             InitializeComponent();
@@ -31,7 +32,7 @@ namespace AppWithDB.Pages
             UserData.Db = new DraperyEntities();
             mv.SizeToContent = SizeToContent.Manual;
             mv.WindowState = WindowState.Maximized;
-            WareToolFrame.Navigate(new AddToolPage());
+            //WareToolFrame.Navigate(new AddToolPage(this));
             ClPage = HelperClass.ShowPage(WareFrame, ClPage, TableName.cloth);
         }
 
@@ -52,13 +53,9 @@ namespace AppWithDB.Pages
 
         private void ProdConstructMenuItemClick(object sender, RoutedEventArgs e)
         {
-            if (UserData.orderedRecords.Count > 0 && !UserData.orderedRecords.Last().IsFull())
-            {
-                MessageBox.Show("Добавьте все поля");
-                return;
-            }
-
-            WareFrame.Navigate(new ProdConstructorPage());
+            if (Constr == null)
+                Constr = new ProductConstructorPage();
+            WareFrame.Navigate(Constr);
         }
     }
 }

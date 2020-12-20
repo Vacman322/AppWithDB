@@ -12,28 +12,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Data.Entity;
 
 namespace AppWithDB.Pages
 {
     /// <summary>
-    /// Interaction logic for ProductPadge.xaml
+    /// Interaction logic for UserOrderPage.xaml
     /// </summary>
-    public partial class ProductPadge : Page
+    public partial class UserBasketPage : Page
     {
-        public DraperyEntities Db;
-        public DataGrid DatabGrid { get; set; }
-
-        public ProductPadge()
+        public UserBasketPage()
         {
             InitializeComponent();
-
-            DatabGrid = DbGrid;
-            Db = UserData.Db;
-            Db.Products.Load();
-            DbGrid.ItemsSource = Db.Products.Local.ToBindingList();
-            UserData.Grid = DbGrid;          
+            MessageBox.Show("Ещё недоделано");
         }
-
     }
 }

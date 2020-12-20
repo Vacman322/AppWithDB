@@ -25,8 +25,8 @@ namespace AppWithDB.Pages
         public ProductPadge ProdPage;
         public ClothPage ClPage;
         public FurniturePage FurPage;
-        public OrderPage OrdPage;
-        public UserOrderConstructorPage ConstrPage;
+        public UserOrderPage OrdPage;
+        public UserBasketPage Basket;
 
         public UserPage(MainWindow mainWindow, string login)
         {
@@ -34,9 +34,8 @@ namespace AppWithDB.Pages
 
             UserData.Db = new DraperyEntities();
 
-            ToolFrame.Navigate(new AddToolPage());
             ProdPage = HelperClass.ShowPage(UserFrame, ProdPage, TableName.product);
-            ConstrPage = new UserOrderConstructorPage();
+            OrdPage = new UserOrderPage();
             mv = mainWindow;
             mv.SizeToContent = SizeToContent.Manual;
             mv.WindowState = WindowState.Maximized;
@@ -56,50 +55,16 @@ namespace AppWithDB.Pages
             FurPage = HelperClass.ShowPage(UserFrame, FurPage, TableName.furniture);
         }
         
-        private void ConstructorMenuItemClick(object sender, RoutedEventArgs e)
-        {
-            UserFrame.Navigate(ConstrPage);
-        }
 
         private void UserOrderMenuItemClick(object sender, RoutedEventArgs e)
         {
-            UserFrame.Navigate(new UserOrderPage());
+            UserFrame.Navigate(OrdPage);
         }
 
-        private void NextButtonClick(object sender, RoutedEventArgs e)
+        private void BasketMenuItemClick(object sender, RoutedEventArgs e)
         {
-            switch (UserData.CurrentTableName)
-            {
-                case TableName.product:
-                    {
-                        if (UserData.orderedRecords.Last().Product == null)
-                        {
-                            MessageBox.Show("Выберите продукт");
-                            return;
-                        }
-                        var record = UserData.orderedRecords.Last();
-                        UserData.Db.Clothes.Load();
-                        var bind = UserData.Db.Clothes.Local.Where(c => c.Products.Contains(record.Product)).ToList();
-                        ClPage = HelperClass.ShowPage(UserFrame, ClPage, TableName.cloth);
-                        ClPage.DbGrid.ItemsSource = bind;          
-                    }     
-                    break;
-                case TableName.cloth:
-                    {
-                        var record = UserData.orderedRecords.Last();
-                        var codes = record.Product.ProductFurnitures.Select(pf => pf.furCode).ToHashSet();
-                        UserData.Db.Furnitures.Load();
-                        var bind = UserData.Db.Furnitures.Local.Where(f => codes.Contains(f.furCode)).ToList();
-                        FurPage = HelperClass.ShowPage(UserFrame, FurPage, TableName.furniture);
-                        FurPage.DbGrid.ItemsSource = bind;
-                    }
-                    break;
-                case TableName.furniture:
-                        UserFrame.Navigate(ConstrPage);
-                    break;
-                default:
-                    break;
-            }
+            Basket = new UserBasketPage();
+            UserFrame.Navigate(Basket);
         }
     }
 }

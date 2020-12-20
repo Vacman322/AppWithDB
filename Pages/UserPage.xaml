@@ -10,7 +10,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -20,13 +20,15 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-            <MenuItem Header="Списки" Click="ProductMenuItmeClick"></MenuItem>
-            <MenuItem Header="Конструктор" Click="ConstructorMenuItemClick"></MenuItem>
-            <MenuItem Header="Заказ" Click="UserOrderMenuItemClick"></MenuItem>
+            <MenuItem Header="Списки">
+                <MenuItem Header="Продукты" Click="ProductMenuItmeClick"/>
+                <MenuItem Header="Ткани" Click="ClothMenuitemClick"/>
+                <MenuItem Header="Фурнитура" Click="FurnitureMenuItemClick"/>
+            </MenuItem>
+            <MenuItem Header="Корзина" Click="BasketMenuItemClick"></MenuItem>
+            <MenuItem Header="Заказы" Click="UserOrderMenuItemClick"></MenuItem>
         </Menu>
         <Frame x:Name="UserFrame" Grid.Row="2" Grid.Column="1"/>
         <Frame x:Name="ToolFrame" Grid.Row="2" Grid.Column="0"/>
-
-        <Button Content="Далее" Click="NextButtonClick" Grid.Row="3" Margin="10"/>
     </Grid>
 </Page>

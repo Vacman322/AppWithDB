@@ -10,8 +10,8 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.3*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto" MaxWidth="300"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -25,7 +25,7 @@
                 <MenuItem Header="Фурнитура" Click="FurnitureMenuItemClick"></MenuItem>
                 <MenuItem Header="Изделия" Click="ProductMenuItmeClick"></MenuItem>
             </MenuItem>
-            <MenuItem Header="Конструктор материала" Click="ProdConstructMenuItemClick"></MenuItem>
+            <MenuItem Header="Конструктор продукта" Click="ProdConstructMenuItemClick"></MenuItem>
         </Menu>
         <Frame x:Name="WareFrame" Grid.Row="2" Grid.Column="1"/>
         <Frame x:Name="WareToolFrame" Grid.Row="2" Grid.Column="0"/>
