@@ -35,7 +35,7 @@ namespace AppWithDB.Pages
             UserData.Db = new DraperyEntities();
 
             ProdPage = HelperClass.ShowPage(UserFrame, ProdPage, TableName.product);
-            OrdPage = new UserOrderPage();
+            Basket = new UserBasketPage();
             mv = mainWindow;
             mv.SizeToContent = SizeToContent.Manual;
             mv.WindowState = WindowState.Maximized;
@@ -58,12 +58,12 @@ namespace AppWithDB.Pages
 
         private void UserOrderMenuItemClick(object sender, RoutedEventArgs e)
         {
+            OrdPage = new UserOrderPage();
             UserFrame.Navigate(OrdPage);
         }
 
         private void BasketMenuItemClick(object sender, RoutedEventArgs e)
         {
-            Basket = new UserBasketPage();
             UserFrame.Navigate(Basket);
         }
     }

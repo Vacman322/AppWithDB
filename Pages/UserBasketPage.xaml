@@ -19,7 +19,6 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
-            <RowDefinition/>
         </Grid.RowDefinitions>
 
         
@@ -41,16 +40,27 @@
             <Label Content="Количество" Grid.Column="1"/>
             <Label Content="Стоимость" Grid.Column="2"/>
 
-            <ComboBox Grid.Column="0" Grid.Row="1" VerticalAlignment="Top" Margin="0,0,10,0"/>
-            <ComboBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Top"/>
-            <Label Grid.Column="2" Grid.Row="1" Content="= label6"/>
+            <ComboBox Grid.Column="0" Grid.Row="1" VerticalAlignment="Top" Margin="0,0,10,0" x:Name="ProdNameComboBox" TextBoxBase.TextChanged="ProdNameComboBox_TextChanged" DropDownOpened="ProdNameComboBox_DropDownOpened" IsEditable="True"/>
+            <ComboBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" x:Name="QtyComboBox" IsEditable="True" PreviewTextInput="DigitOnly" TextBoxBase.TextChanged="QtyComboBox_TextChanged"/>
+            <Label Grid.Column="2" Grid.Row="1" Content="= " x:Name="PriceLabel"/>
         </Grid>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
-            <Button Content="Удалить" Height="20" Margin="0,20,10,0"/>
-            <Button Content="Добавить" Height="20" Margin="10,20,0,0"/>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <Button Content="Удалить" Height="20" Margin="0,20,10,0" Click="DelButtonClick"/>
+            <Button Content="Добавить" Height="20" Margin="10,20,0,0" Click="AddButtonClick"/>
         </StackPanel>
+
+        <DataGrid Grid.RowSpan="2" x:Name="BasketDataGrid" Grid.Column="2" Grid.Row="1" IsReadOnly="True" AutoGenerateColumns="False" SelectionChanged="BasketDataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Изделие" Width="*" Binding="{Binding Prod.productName}"/>
+                <DataGridTextColumn Header="Количество" Width="*" Binding="{Binding Qty}"/>
+                <DataGridTextColumn Header="Цена" Width="*" Binding="{Binding Price}"/>
+            </DataGrid.Columns>
+        </DataGrid>
         
-        <Label Content="label8" Grid.Row="1" Grid.Column="2"/>
+        <StackPanel Grid.Row="3" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Button Content="Очистить" Margin="0,0,10,0" Click="ClearButtonClick"/>
+            <Button Content="Забронировать" Margin="10,0,0,0" Click="BookButtonClick"/>
+        </StackPanel>
     </Grid>
 </Page>
